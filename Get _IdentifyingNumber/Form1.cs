@@ -11,6 +11,7 @@ using System.Management;
 using System.IO;
 using Get__IdentifyingNumber.Properties;
 using System.Reflection;
+using System.Diagnostics;
 
 namespace Get__IdentifyingNumber
 {
@@ -40,6 +41,7 @@ namespace Get__IdentifyingNumber
                 {
                     IdentifyingNumber = managementObject.GetPropertyValue("IdentifyingNumber").ToString();
                     this.label1.Text = "本机序列号：" + IdentifyingNumber;
+                    this.linkLabel1.Text = "本机序列号：" + IdentifyingNumber;
                     Comparison(IdentifyingNumber);
                 }
             }
@@ -75,6 +77,17 @@ namespace Get__IdentifyingNumber
         private void label1_Click(object sender, EventArgs e)
         {
             Clipboard.SetText(IdentifyingNumber);
+            //Process.Start("IExplore", $"https://newsupport.lenovo.com.cn/deviceGuarantee.html?fromsource=deviceGuarantee&selname={IdentifyingNumber}");
+            Process.Start($"https://newsupport.lenovo.com.cn/deviceGuarantee.html?fromsource=deviceGuarantee&selname={IdentifyingNumber}");
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Clipboard.SetText(IdentifyingNumber);
+            this.linkLabel1.LinkVisited = true;
+            //Process.Start("IExplore", $"https://newsupport.lenovo.com.cn/deviceGuarantee.html?fromsource=deviceGuarantee&selname={IdentifyingNumber}");
+            Process.Start($"https://newsupport.lenovo.com.cn/deviceGuarantee.html?fromsource=deviceGuarantee&selname={IdentifyingNumber}");
+
         }
     }
 }
