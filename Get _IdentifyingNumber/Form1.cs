@@ -20,6 +20,7 @@ namespace Get__IdentifyingNumber
         {
             InitializeComponent();
         }
+        private string IdentifyingNumber=string.Empty;
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -37,7 +38,7 @@ namespace Get__IdentifyingNumber
                 ManagementObject managementObject = item as ManagementObject;
                 if (managementObject != null) 
                 {
-                    string IdentifyingNumber = managementObject.GetPropertyValue("IdentifyingNumber").ToString();
+                    IdentifyingNumber = managementObject.GetPropertyValue("IdentifyingNumber").ToString();
                     this.label1.Text = "本机序列号：" + IdentifyingNumber;
                     Comparison(IdentifyingNumber);
                 }
@@ -69,6 +70,11 @@ namespace Get__IdentifyingNumber
                 File.Create(System.Environment.CurrentDirectory + "\\BadIdentifyingNumber.txt").Close();
                 return false;
             }
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(IdentifyingNumber);
         }
     }
 }
