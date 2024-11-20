@@ -5,10 +5,10 @@ using System.Runtime.InteropServices;
 // 有关程序集的一般信息由以下
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("Get _IdentifyingNumber")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("检测OEM电脑序列号")]
+[assembly: AssemblyDescription("检测OEM电脑序列号")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("福建-兮")]
 [assembly: AssemblyProduct("Get _IdentifyingNumber")]
 [assembly: AssemblyCopyright("Copyright ©  2024")]
 [assembly: AssemblyTrademark("")]
