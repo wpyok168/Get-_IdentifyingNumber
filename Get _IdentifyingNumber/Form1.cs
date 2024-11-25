@@ -40,8 +40,8 @@ namespace Get__IdentifyingNumber
                 if (managementObject != null) 
                 {
                     IdentifyingNumber = managementObject.GetPropertyValue("IdentifyingNumber").ToString();
-                    this.label1.Text = "本机序列号：" + IdentifyingNumber;
-                    this.linkLabel1.Text = "本机序列号：" + IdentifyingNumber;
+                    this.label1.Text = "序列号：" + IdentifyingNumber;
+                    this.linkLabel1.Text = "序列号：" + IdentifyingNumber;
                     Comparison(IdentifyingNumber);
                 }
             }
@@ -53,12 +53,14 @@ namespace Get__IdentifyingNumber
             {
                 IEnumerable<string> ret = File.ReadAllLines(System.Environment.CurrentDirectory + "\\BadIdentifyingNumber.txt").Where(x => x.Equals(idnNum));
                 if (ret.Any()) 
-                {                 
+                {
+                    this.button1.Visible = false;
                     this.pictureBox1.Image = Image.FromStream(new MemoryStream(Resources.zhadan, 0, Resources.zhadan.Length));
                     return true;
                 }
                 else
                 {
+                    this.button1.Visible = true;
                     //string imagepath =System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Namespace + ".Images.zhengque.jpg";
                     //string[] res = Assembly.GetExecutingAssembly().GetManifestResourceNames();
                     //Image obj = Image.FromStream(Assembly.GetExecutingAssembly().GetManifestResourceStream(res[3]));
@@ -88,6 +90,23 @@ namespace Get__IdentifyingNumber
             //Process.Start("IExplore", $"https://newsupport.lenovo.com.cn/deviceGuarantee.html?fromsource=deviceGuarantee&selname={IdentifyingNumber}");
             Process.Start($"https://newsupport.lenovo.com.cn/deviceGuarantee.html?fromsource=deviceGuarantee&selname={IdentifyingNumber}");
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            using (FileStream fs = new FileStream(System.Environment.CurrentDirectory + "\\BadIdentifyingNumber.txt", FileMode.OpenOrCreate, FileAccess.ReadWrite))
+            {
+                using (StreamWriter sw = new StreamWriter(fs))
+                {
+                    fs.Position = fs.Length;
+                    sw.WriteLine(this.IdentifyingNumber);
+                    sw.Close();
+                    fs.Close();
+                }
+            }
+            this.pictureBox1.Image = Image.FromStream(new MemoryStream(Resources.zhadan, 0, Resources.zhadan.Length));
+            this.button1.Visible = false;
+            
         }
     }
 }
