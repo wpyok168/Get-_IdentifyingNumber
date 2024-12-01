@@ -31,6 +31,7 @@ namespace Get__IdentifyingNumber
                 File.Create(System.Environment.CurrentDirectory + "\\BadIdentifyingNumber.txt").Close();
             }
             GetIdentifyingNumber();
+            this.toolStripStatusLabel1.Visible = false;
             //OpenWeChatXCX();
         }
         private bool GetIdentifyingNumber()
@@ -149,6 +150,49 @@ namespace Get__IdentifyingNumber
                 Console.WriteLine("清先运行微信并登录");
                 Console.ReadLine();
             }
+        }
+
+        private  void 上传数据ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //this.上传数据ToolStripMenuItem.Enabled = false;
+            HpSocketClient client = new HpSocketClient();
+            client.Connect("127.0.0.1", 8899);
+            client.UploadFile(System.Environment.CurrentDirectory + "\\BadIdentifyingNumber.txt");
+            client.OnReceiveEvent += (response) => 
+            { 
+                Console.WriteLine(response.Message);
+                this.toolStripStatusLabel1.Visible = true;
+                //this.statusStrip1.Invoke(new Action(() => { this.toolStripStatusLabel1.Text= response.Message; }));
+                this.toolStripStatusLabel1.Text = response.Message;
+                if (response.Message.Equals("上传完成"))
+                {
+                    client.CloseCliend();
+                    //this.menuStrip1.Invoke(new Action(() => { this.上传数据ToolStripMenuItem.Enabled = true; }));
+                }
+            };
+            //client.CloseCliend();
+        }
+
+        private void 下载数据ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //this.下载数据ToolStripMenuItem.Enabled = false;
+            HpSocketClient client = new HpSocketClient();
+            client.Connect("127.0.0.1", 8899);
+            client.DownloadFile("BadIdentifyingNumber.txt");
+            client.OnReceiveEvent += (response) =>
+            {
+                Console.WriteLine(response.Message);
+                this.toolStripStatusLabel1.Visible = true;
+                //this.statusStrip1.Invoke(new Action(() => { this.toolStripStatusLabel1.Text = response.Message; }));
+                this.toolStripStatusLabel1.Text = response.Message;
+                if (response.Message.Equals("下载完成"))
+                {
+                    client.CloseCliend();
+                    //this.menuStrip1.Invoke(new Action(() => { this.下载数据ToolStripMenuItem.Enabled = true; }));
+                }
+            };
+            //client.CloseCliend();
+
         }
     }
 }
