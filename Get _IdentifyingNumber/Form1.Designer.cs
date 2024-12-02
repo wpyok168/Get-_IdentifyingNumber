@@ -47,9 +47,10 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("微软雅黑", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(31, 60);
+            this.label1.Location = new System.Drawing.Point(16, 30);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(144, 52);
+            this.label1.Size = new System.Drawing.Size(73, 27);
             this.label1.TabIndex = 0;
             this.label1.Text = "label1";
             this.label1.Visible = false;
@@ -58,9 +59,10 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(29, 118);
+            this.pictureBox1.Location = new System.Drawing.Point(14, 59);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(713, 304);
+            this.pictureBox1.Size = new System.Drawing.Size(356, 152);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
@@ -69,9 +71,10 @@
             // 
             this.linkLabel1.AutoSize = true;
             this.linkLabel1.Font = new System.Drawing.Font("微软雅黑", 13.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.linkLabel1.Location = new System.Drawing.Point(31, 60);
+            this.linkLabel1.Location = new System.Drawing.Point(11, 30);
+            this.linkLabel1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(212, 50);
+            this.linkLabel1.Size = new System.Drawing.Size(110, 26);
             this.linkLabel1.TabIndex = 2;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "linkLabel1";
@@ -80,9 +83,10 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button1.Location = new System.Drawing.Point(613, 12);
+            this.button1.Location = new System.Drawing.Point(317, 6);
+            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(129, 100);
+            this.button1.Size = new System.Drawing.Size(64, 50);
             this.button1.TabIndex = 3;
             this.button1.Text = "列入黑名单";
             this.button1.UseVisualStyleBackColor = true;
@@ -90,28 +94,28 @@
             // 
             // menuStrip1
             // 
-            this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.上传数据ToolStripMenuItem,
             this.下载数据ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(774, 42);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(3, 1, 0, 1);
+            this.menuStrip1.Size = new System.Drawing.Size(392, 24);
             this.menuStrip1.TabIndex = 4;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // 上传数据ToolStripMenuItem
             // 
             this.上传数据ToolStripMenuItem.Name = "上传数据ToolStripMenuItem";
-            this.上传数据ToolStripMenuItem.Size = new System.Drawing.Size(130, 38);
+            this.上传数据ToolStripMenuItem.Size = new System.Drawing.Size(68, 22);
             this.上传数据ToolStripMenuItem.Text = "上传数据";
             this.上传数据ToolStripMenuItem.Click += new System.EventHandler(this.上传数据ToolStripMenuItem_Click);
             // 
             // 下载数据ToolStripMenuItem
             // 
             this.下载数据ToolStripMenuItem.Name = "下载数据ToolStripMenuItem";
-            this.下载数据ToolStripMenuItem.Size = new System.Drawing.Size(130, 38);
+            this.下载数据ToolStripMenuItem.Size = new System.Drawing.Size(68, 22);
             this.下载数据ToolStripMenuItem.Text = "下载数据";
             this.下载数据ToolStripMenuItem.Click += new System.EventHandler(this.下载数据ToolStripMenuItem_Click);
             // 
@@ -120,23 +124,24 @@
             this.statusStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 438);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 234);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(774, 41);
+            this.statusStrip1.Padding = new System.Windows.Forms.Padding(0, 0, 7, 0);
+            this.statusStrip1.Size = new System.Drawing.Size(392, 22);
             this.statusStrip1.TabIndex = 5;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(257, 31);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(131, 17);
             this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 24F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(774, 479);
+            this.ClientSize = new System.Drawing.Size(392, 256);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.linkLabel1);
@@ -145,8 +150,9 @@
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.MaximumSize = new System.Drawing.Size(800, 550);
-            this.MinimumSize = new System.Drawing.Size(800, 550);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.MaximumSize = new System.Drawing.Size(408, 295);
+            this.MinimumSize = new System.Drawing.Size(408, 295);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "炸弹检测";

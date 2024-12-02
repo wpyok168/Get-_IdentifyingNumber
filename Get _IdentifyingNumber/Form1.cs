@@ -13,6 +13,8 @@ using Get__IdentifyingNumber.Properties;
 using System.Reflection;
 using System.Diagnostics;
 using Microsoft.Win32;
+using HPSocket.Base;
+using SocketClientBase;
 
 namespace Get__IdentifyingNumber
 {
@@ -154,12 +156,51 @@ namespace Get__IdentifyingNumber
 
         private  void 上传数据ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            SocketClientUP();
+        }
+        private async void SocketClientUP()
+        {
+            this.上传数据ToolStripMenuItem.Enabled = false;
+            SocketClient client = new SocketClient();
+            client.OnConnected += () => Console.WriteLine("Connected to server.");
+            client.OnDisconnected += () => Console.WriteLine("Disconnected from server.");
+            client.OnTextSent += text => 
+            { 
+                Console.WriteLine($"Text sent: {text}"); 
+            };
+            client.OnTextReceived += (text, from) => 
+            { 
+                Console.WriteLine($"Text received from {from}: {text}");
+                this.statusStrip1.Invoke(new Action(() => { this.toolStripStatusLabel1.Text = text; }));
+                if (text.Equals("上传完成"))
+                {
+                    this.上传数据ToolStripMenuItem.Enabled = true;
+                    client.Disconnect();
+                }
+                
+            };
+            client.OnFileProgress += (fileName, current, total) =>
+            {
+                Console.WriteLine($"File progress: {fileName} ({current}/{total})");
+                this.toolStripStatusLabel1.Visible = true;
+                this.statusStrip1.Invoke(new Action(() => { this.toolStripStatusLabel1.Text = $"File progress: {current}/{total}"; }));
+            };
+                
+            client.OnFileSent += fileName => Console.WriteLine($"File sent: {fileName}");
+
+            await client.ConnectAsync("127.0.0.1", 8899);
+            //await client.SendTextAsync("Hello, Server!");
+            await client.SendFileAsync("BadIdentifyingNumber.txt");
+        }
+
+        private void HpSocketClientUP()
+        {
             //this.上传数据ToolStripMenuItem.Enabled = false;
             HpSocketClient client = new HpSocketClient();
             client.Connect("127.0.0.1", 8899);
             client.UploadFile(System.Environment.CurrentDirectory + "\\BadIdentifyingNumber.txt");
-            client.OnReceiveEvent += (response) => 
-            { 
+            client.OnReceiveEvent += (response) =>
+            {
                 Console.WriteLine(response.Message);
                 this.toolStripStatusLabel1.Visible = true;
                 //this.statusStrip1.Invoke(new Action(() => { this.toolStripStatusLabel1.Text= response.Message; }));
@@ -174,6 +215,47 @@ namespace Get__IdentifyingNumber
         }
 
         private void 下载数据ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SocketClientDown();
+
+        }
+
+        private async void SocketClientDown()
+        {
+            this.下载数据ToolStripMenuItem.Enabled = false;
+            SocketClient client = new SocketClient();
+            client.OnConnected += () => Console.WriteLine("Connected to server.");
+            client.OnDisconnected += () => Console.WriteLine("Disconnected from server.");
+            client.OnTextSent += text =>
+            {
+                Console.WriteLine($"Text sent: {text}");
+            };
+            client.OnTextReceived += (text, from) =>
+            {
+                Console.WriteLine($"Text received from {from}: {text}");
+                this.statusStrip1.Invoke(new Action(() => { this.toolStripStatusLabel1.Text = text; }));
+                if (text.Equals("下载完成"))
+                {
+                    this.下载数据ToolStripMenuItem.Enabled = true;
+                    client.Disconnect();
+                }
+
+            };
+            client.OnFileProgress += (fileName, current, total) =>
+            {
+                Console.WriteLine($"File progress: {fileName} ({current}/{total})");
+                this.toolStripStatusLabel1.Visible = true;
+                this.statusStrip1.Invoke(new Action(() => { this.toolStripStatusLabel1.Text = $"File progress: {current}/{total}"; }));
+            };
+
+            client.OnFileSent += fileName => Console.WriteLine($"File sent: {fileName}");
+
+            await client.ConnectAsync("127.0.0.1", 8899);
+            //await client.SendTextAsync("Hello, Server!");
+            await client.RequestFileAsync("ReceivedFiles\\BadIdentifyingNumber.txt");
+        }
+
+        private void  HpSocketDown()
         {
             //this.下载数据ToolStripMenuItem.Enabled = false;
             HpSocketClient client = new HpSocketClient();
@@ -192,7 +274,6 @@ namespace Get__IdentifyingNumber
                 }
             };
             //client.CloseCliend();
-
         }
     }
 }
