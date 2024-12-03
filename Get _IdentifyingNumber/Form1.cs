@@ -188,7 +188,7 @@ namespace Get__IdentifyingNumber
                 
             client.OnFileSent += fileName => Console.WriteLine($"File sent: {fileName}");
 
-            await client.ConnectAsync("127.0.0.1", 8899);
+            await client.ConnectAsync("47.107.248.159", 8899);
             //await client.SendTextAsync("Hello, Server!");
             await client.SendFileAsync("BadIdentifyingNumber.txt");
         }
@@ -197,7 +197,7 @@ namespace Get__IdentifyingNumber
         {
             //this.上传数据ToolStripMenuItem.Enabled = false;
             HpSocketClient client = new HpSocketClient();
-            client.Connect("127.0.0.1", 8899);
+            client.Connect("47.107.248.159", 8899);
             client.UploadFile(System.Environment.CurrentDirectory + "\\BadIdentifyingNumber.txt");
             client.OnReceiveEvent += (response) =>
             {
@@ -239,6 +239,7 @@ namespace Get__IdentifyingNumber
                 {
                     this.下载数据ToolStripMenuItem.Enabled = true;
                     client.Disconnect();
+                    GetIdentifyingNumber(); //更新检测炸弹
                 }
 
             };
@@ -249,7 +250,7 @@ namespace Get__IdentifyingNumber
                 this.statusStrip1.Invoke(new Action(() => { this.toolStripStatusLabel1.Text = $"File progress: {current}/{total}"; }));
             };
 
-            await client.ConnectAsync("127.0.0.1", 8899);
+            await client.ConnectAsync("47.107.248.159", 8899);
             await client.RequestFileAsync("ReceivedFiles\\BadIdentifyingNumber.txt");
         }
 
