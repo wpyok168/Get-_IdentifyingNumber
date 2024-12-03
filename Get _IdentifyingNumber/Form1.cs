@@ -188,7 +188,7 @@ namespace Get__IdentifyingNumber
                 
             client.OnFileSent += fileName => Console.WriteLine($"File sent: {fileName}");
 
-            await client.ConnectAsync("47.107.248.159", 8899);
+            await client.ConnectAsync("47.107.248.159", 8899);//47.107.248.159
             //await client.SendTextAsync("Hello, Server!");
             await client.SendFileAsync("BadIdentifyingNumber.txt");
         }
@@ -237,9 +237,12 @@ namespace Get__IdentifyingNumber
                 this.statusStrip1.Invoke(new Action(() => { this.toolStripStatusLabel1.Text = text; }));
                 if (text.Equals("下载完成")|| text.Contains("请求文件不存在"))//请求文件不存在，请先上传或联系服务器管理员处理
                 {
+                    base.Invoke(new Action(() => {
+                        GetIdentifyingNumber(); //更新检测炸弹
+                    }));
+
                     this.下载数据ToolStripMenuItem.Enabled = true;
                     client.Disconnect();
-                    GetIdentifyingNumber(); //更新检测炸弹
                 }
 
             };
@@ -250,7 +253,7 @@ namespace Get__IdentifyingNumber
                 this.statusStrip1.Invoke(new Action(() => { this.toolStripStatusLabel1.Text = $"File progress: {current}/{total}"; }));
             };
 
-            await client.ConnectAsync("47.107.248.159", 8899);
+            await client.ConnectAsync("47.107.248.159", 8899);//47.107.248.159
             await client.RequestFileAsync("ReceivedFiles\\BadIdentifyingNumber.txt");
         }
 

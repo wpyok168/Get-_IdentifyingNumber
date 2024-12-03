@@ -148,9 +148,9 @@ namespace SocketClientBase
 
                     OnFileProgress?.Invoke(message.FileName, existingSize, message.FileSize);
                 }
-
+                fileStream.Close();
                 Console.WriteLine($"File {message.FileName} received.");
-                OnTextReceived?.Invoke("下载完成", message.FileName);
+                OnTextReceived?.Invoke("下载完成", message.FileName); 
             };
         }
         public async Task RequestFileAsync(string filepath)
