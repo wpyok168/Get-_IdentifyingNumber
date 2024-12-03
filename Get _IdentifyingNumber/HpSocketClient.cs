@@ -54,6 +54,7 @@ namespace Get__IdentifyingNumber
                         fs.Seek(0, SeekOrigin.Begin);
                         fs.WriteAsync(fileData, 0, fileData.Length);
                         OnReceiveEvent?.Invoke(response); // 更新进度
+
                     }
                 }
                 OnReceiveEvent?.Invoke(response);
